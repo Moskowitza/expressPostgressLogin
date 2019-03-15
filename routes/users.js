@@ -1,29 +1,29 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-const passport = require("passport");
-const userController = require("../controllers/userController");
-require("../config/passport")(passport);
-const { Product, User } = require("../models");
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const userController = require('../controllers/userController');
+require('../config/passport')(passport);
+const { Product, User } = require('../models');
 
 /* GET index route. */
-router.get("/", (req, res, next) => {
-  res.render("index", { title: "user routes" });
+router.get('/', (req, res, next) => {
+  res.render('index', { title: 'user routes' });
 });
 
 // USER LOGIN GET AND POST
-router.get("/signin", userController.loginForm);
-router.get("/signup", userController.signupForm);
+router.get('/signin', userController.loginForm);
+router.get('/signup', userController.signupForm);
 // POST SIGNUP
-router.post("/signup", userController.validateRegister);
+router.post('/signup', userController.validateRegister);
 // POST SIGNIN
-router.post("/signin", userController.welcomeBack);
+router.post('/signin', userController.welcomeBack);
 
 // USER POST and EDIT PRODUCTS
 router.get(
-  "/product",
-  passport.authenticate("jwt", { session: false }),
+  '/product',
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const token = getToken(req.headers);
     if (token) {
@@ -33,14 +33,14 @@ router.get(
           res.status(400).send(error);
         });
     } else {
-      return res.status(403).send({ success: false, msg: "Unauthorized." });
+      return res.status(403).send({ success: false, msg: 'Unauthorized.' });
     }
   }
 );
 
 router.post(
-  "/product",
-  passport.authenticate("jwt", { session: false }),
+  '/product',
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const token = getToken(req.headers);
     if (token) {
@@ -52,14 +52,14 @@ router.post(
         .then(product => res.status(201).send(product))
         .catch(error => res.status(400).send(error));
     } else {
-      return res.status(403).send({ success: false, msg: "Unauthorized." });
+      return res.status(403).send({ success: false, msg: 'Unauthorized.' });
     }
   }
 );
 
 getToken = function(headers) {
   if (headers && headers.authorization) {
-    const parted = headers.authorization.split(" ");
+    const parted = headers.authorization.split(' ');
     if (parted.length === 2) {
       return parted[1];
     }
