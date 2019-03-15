@@ -1,5 +1,7 @@
 "use strict";
+
 var bcrypt = require("bcrypt-nodejs");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
@@ -13,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     if (user.changed("password")) {
       user.password = bcrypt.hashSync(
         user.password,
-        bycrypt.genSaltSync(10),
+        bcrypt.genSaltSync(10),
         null
       );
     }

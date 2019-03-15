@@ -1,7 +1,8 @@
 const express = require("express");
+const router = express.Router();
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
-const router = express.Router();
+const userController = require("../controllers/userController");
 require("../config/passport")(passport);
 const Product = require("../models").Product;
 const User = require("../models").User;
@@ -11,9 +12,8 @@ router.get("/", function(req, res, next) {
   res.send("respond with a resource");
 });
 
-router.get("/login", function(req, res, next) {
-  res.render("login");
-});
+router.get("/signin", userController.loginForm);
+
 router.post("/signup", function(req, res) {
   console.log(req.body);
   if (!req.body.username || !req.body.password) {
