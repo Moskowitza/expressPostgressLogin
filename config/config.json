@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": "mysql2018",
-    "database": "blogger",
+    "username": "aaron",
+    "password": "password",
+    "database": "secure_node",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "test": {
-    "username": "root",
-    "password": "mysql2018",
-    "database": "database_test",
+    "username": "aaron",
+    "password": "password",
+    "database": "secure_node",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": "mysql2018",
-    "database": "database_production",
+    "username": "aaron",
+    "password": "password",
+    "database": "postgres",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   }
 }
