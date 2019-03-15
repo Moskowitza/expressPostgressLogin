@@ -13,7 +13,6 @@
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
-  // SET FOR PROD
   "production": {
     "username": "PROCESS.ENV.DATABASE_USER",
     "password": "PROCESS.ENV.DATABASE_PASSWORD",
