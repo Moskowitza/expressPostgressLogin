@@ -1,8 +1,10 @@
-"use strict";
-const sequelize = require("sequelize");
+'use strict';
+
+const sequelize = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  var Product = sequelize.define(
-    "Product",
+  let Product = sequelize.define(
+    'Product',
     {
       prod_name: DataTypes.STRING,
       prod_desc: DataTypes.STRING,
@@ -12,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   Product.associate = function(models) {
     // associations can be defined here
+    Product.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
   return Product;
 };

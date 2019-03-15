@@ -1,43 +1,53 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var Sequelize = require("sequelize");
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 
-var app = express();
+const logger = require('morgan');
+const Sequelize = require('sequelize');
+const expressValidator = require('express-validator');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
+const app = express();
 // Requiring our models for syncing
-var db = require("./models");
+const db = require('./models');
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
-app.use(logger("dev"));
+// Exposes a bunch of methods for validating data. Used heavily on userController.validateRegister
+app.use(expressValidator());
+
+// use Morgan for logging
+app.use(logger('dev'));
+
+// RIP BODY PARSER Takes the raw requests and turns them into usable properties on req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.render('error');
 });
 
 module.exports = app;
