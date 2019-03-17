@@ -12,5 +12,6 @@ router.get('/about', (req, res, next) => {
 });
 
 router.get('/productAdd', productController.addProduct);
+router.post('/productAdd', productController.newProduct);
 
 module.exports = router;

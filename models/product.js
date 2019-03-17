@@ -3,7 +3,7 @@
 const sequelize = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  let Product = sequelize.define(
+  const Product = sequelize.define(
     'Product',
     {
       prod_name: DataTypes.STRING,
@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Product.associate = function(models) {
-    // associations can be defined here
-    Product.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
-  };
+  // Product.associate = function(models) {
+  //   // associations can be defined here
+  //   Product.belongsTo(models.User, {
+  //     foreignKey: {
+  //       allowNull: false,
+  //     },
+  //   });
+  // };
   return Product;
 };

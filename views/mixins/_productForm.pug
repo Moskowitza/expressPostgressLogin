@@ -1,11 +1,13 @@
 mixin productForm(product ={})
-  form.form(action="/productForm" method='POST')
-      h2 Product
+
+  form.form(action="/productAdd" method='POST' )
+      h2 Product 
       label(for="prod_name") prod_name 
       input(type="text" name="prod_name" required)
       label(for="prod_desc") prod_desc 
-      input(type="text" name="prod_desc" required)
+      textarea(name="prod_desc" required)
       label(for="prod_price") prod_price
       input(type="number" name="prod_price" required)
       input.button(type="submit" value="Submit")
-      
+
+//- to add images in a form include the property to the form: enctype="multipart/form-data"
