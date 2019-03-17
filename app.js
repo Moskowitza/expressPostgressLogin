@@ -1,35 +1,35 @@
-const createError = require('http-errors');
-const express = require('express');
-const session = require('express-session');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const flash = require('connect-flash');
-const logger = require('morgan');
-const Sequelize = require('sequelize');
-const expressValidator = require('express-validator');
-const passport = require('passport');
-const helpers = require('./helpers');
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const errorHandlers = require('./handlers/errorHandlers');
+const createError = require("http-errors");
+const express = require("express");
+const session = require("express-session");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const flash = require("connect-flash");
+const logger = require("morgan");
+const Sequelize = require("sequelize");
+const expressValidator = require("express-validator");
+const passport = require("passport");
+const helpers = require("./helpers");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const errorHandlers = require("./handlers/errorHandlers");
 
 const app = express();
-require('dotenv').config();
+require("dotenv").config();
 // Requiring our models for syncing
-const db = require('./models');
+const db = require("./models");
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
 // Exposes a bunch of methods for validating data. Used heavily on userController.validateRegister
 app.use(expressValidator());
 
 // use Morgan for logging
-app.use(logger('dev'));
+app.use(logger("dev"));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 // RIP BODY PARSER Takes the raw requests and turns them into usable properties on req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -63,8 +63,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
 
 // If that above routes didnt work, we 404 them and forward to error handler
 app.use(errorHandlers.notFound);
@@ -73,7 +73,7 @@ app.use(errorHandlers.notFound);
 app.use(errorHandlers.flashValidationErrors);
 
 // Otherwise this was a really bad error we didn't expect! Shoot eh
-if (app.get('env') === 'development') {
+if (app.get("env") === "development") {
   /* Development Error Handler - Prints stack trace */
   app.use(errorHandlers.developmentErrors);
 }
