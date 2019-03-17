@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const productController = require('../controllers/productController.js');
+
+const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', (req, res, next) => {
+  res.render('index', { title: 'Athena Intelligence' });
 });
+router.get('/about', (req, res, next) => {
+  res.render('about', { title: 'Athena Intelligence' });
+});
+
+router.get('/productAdd', productController.addProduct);
 
 module.exports = router;

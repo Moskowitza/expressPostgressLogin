@@ -21,6 +21,8 @@ router.post('/signup', userController.validateRegister);
 router.post('/signin', userController.welcomeBack);
 
 // USER POST and EDIT PRODUCTS
+router.get('/products', userController.productForm);
+
 router.get(
   '/product',
   passport.authenticate('jwt', { session: false }),
