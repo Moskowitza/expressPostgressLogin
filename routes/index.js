@@ -1,7 +1,10 @@
 const express = require('express');
-const productController = require('../controllers/productController.js');
 
 const router = express.Router();
+const productController = require('../controllers/productController.js');
+
+// Wrap our Async functions in this higher order function
+const { catchErrors } = require('../handlers/errorHandlers');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -12,6 +15,6 @@ router.get('/about', (req, res, next) => {
 });
 
 router.get('/productAdd', productController.addProduct);
-router.post('/productAdd', productController.newProduct);
+router.post('/productAdd', catchErrors(productController.newProduct));
 
 module.exports = router;
