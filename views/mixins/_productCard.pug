@@ -1,0 +1,6 @@
+mixin productCard(product={})
+  .product
+    .product__hero
+      img(src=`/uploads/${product.photo || 'tomato.png'}`)
+      h2.title
+        a(href=`/product/${product.prod_name}`) #{product.prod_name}

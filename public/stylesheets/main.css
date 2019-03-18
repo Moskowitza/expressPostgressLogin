@@ -68,3 +68,74 @@ body {
     background: linear-gradient(35deg, #f1e767 0%, #feb645 100%); }
   .flash p {
     margin: 0; }
+
+.productss {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.product {
+  background: white;
+  margin: 10px 0;
+  width: 30%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05); }
+  .product--wide {
+    width: 100%; }
+  .product__details {
+    padding: 2rem; }
+    .product__details p {
+      line-height: 1.2;
+      margin-bottom: 0; }
+  @media all and (max-width: 850px) {
+    .product {
+      width: 48%; } }
+  @media all and (max-width: 550px) {
+    .product {
+      width: 100%; } }
+
+.product__actions {
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2);
+  margin-bottom: 50px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: space-around; }
+
+.product__action {
+  font-size: 10px; }
+  .product__action svg {
+    width: 25px;
+    fill: white; }
+  .product__action--edit a {
+    border-bottom: 0; }
+
+.product__hero {
+  position: relative;
+  padding: 0 10px 0 10px;
+  text-align: right; }
+  .product__hero:before {
+    display: block;
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    background: linear-gradient(45deg, #05b3d6 0%, rgba(5, 179, 214, 0) 70%), linear-gradient(135deg, #0958ec 10%, rgba(9, 88, 236, 0) 80%), linear-gradient(225deg, #d209ec 10%, rgba(210, 9, 236, 0) 80%), linear-gradient(315deg, #05e129 100%, rgba(5, 225, 41, 0) 70%);
+    opacity: 0.6;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); }
+  .product__hero img {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    position: absolute;
+    left: 0;
+    object-fit: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); }

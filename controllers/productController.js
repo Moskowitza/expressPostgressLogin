@@ -16,3 +16,13 @@ exports.newProduct = async (req, res) => {
 exports.productPage = (req, res) => {
   res.send('product page');
 };
+
+exports.getProducts = async (req, res) => {
+  // query database for all products
+  const allProducts = await db.Product.findAll({
+    raw: true,
+    // Other parameters
+  });
+  console.log(allProducts);
+  res.render('products', { title: 'products', allProducts });
+};

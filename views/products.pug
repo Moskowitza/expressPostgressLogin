@@ -1,0 +1,10 @@
+extends layout
+
+include mixins/_productCard
+
+block content
+  .inner
+    h2= title
+    //- pre= h.dump(allProducts)
+    each product in allProducts
+      +productCard(product)
