@@ -35,5 +35,8 @@ exports.editProduct = async (req, res) => {
   });
   // find the User, make sure they are owner
   // send edit form with the product info
-  res.json(editProduct);
+  res.render('editProduct', {
+    title: `Edit ${editProduct.prod_name}`,
+    editProduct,
+  });
 };
