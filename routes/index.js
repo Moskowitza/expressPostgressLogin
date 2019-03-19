@@ -8,9 +8,7 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  req.flash('error', 'something happened');
-  req.flash('info', 'something happened');
-  req.flash('warning', 'something happened');
+  req.flash('info', 'Page Under Development');
   res.render('index', { title: 'Athena Intelligence' });
 });
 router.get('/about', (req, res, next) => {

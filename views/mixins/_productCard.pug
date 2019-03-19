@@ -1,6 +1,13 @@
 mixin productCard(product={})
   .product
     .product__hero
+      .product__actions
+        .product__action.product__action--edit
+          a(href=`product/${product.id}/edit`)
+            != h.icon('pencil')
       img(src=`/uploads/${product.photo || 'tomato.png'}`)
       h2.title
         a(href=`/product/${product.prod_name}`) #{product.prod_name}
+    .product__details
+      p= product.prod_desc.split(' ').slice(0,25).join(' ')
+      p= product.prod_price

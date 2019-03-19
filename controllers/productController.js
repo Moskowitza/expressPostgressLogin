@@ -26,3 +26,14 @@ exports.getProducts = async (req, res) => {
   console.log(allProducts);
   res.render('products', { title: 'products', allProducts });
 };
+exports.editProduct = async (req, res) => {
+  // find the product by ID
+  const { id } = req.params;
+  const editProduct = await db.Product.findOne({
+    where: { id },
+    raw: true,
+  });
+  // find the User, make sure they are owner
+  // send edit form with the product info
+  res.json(editProduct);
+};

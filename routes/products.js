@@ -7,5 +7,5 @@ const productController = require('../controllers/productController.js');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 router.get('/', catchErrors(productController.getProducts));
-
+router.get('/:id/edit', catchErrors(productController.editProduct));
 module.exports = router;
